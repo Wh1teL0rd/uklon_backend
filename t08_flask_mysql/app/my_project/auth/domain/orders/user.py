@@ -19,7 +19,10 @@ class User(db.Model, IDto):
     current_location = db.Column(db.String(45))
     credit_card_number = db.Column(db.String(45))
 
-    # Relationship 1:M
+    # Relationship 1:M with DriverRatings
+    driver_ratings = db.relationship('DriverRatings', back_populates='user', cascade='all, delete-orphan')
+    # Relationship 1:M with UserRatings
+    user_ratings = db.relationship('UserRatings', back_populates='user', cascade='all, delete-orphan')
 
     def __repr__(self) -> str:
         return (f"User({self.userID}, '{self.first_name}', '{self.last_name}', '{self.email}',"

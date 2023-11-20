@@ -14,9 +14,15 @@ class UserRatings(db.Model, IDto):
     user_ratings_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     rating = db.Column(db.Integer)
     orders_orders_id = db.Column(db.Integer, db.ForeignKey('orders.ordersID'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.userID'))
+    driver_id = db.Column(db.Integer, db.ForeignKey('drivers.driverID'))
+
+    user = db.relationship('User', back_populates='user_ratings')
+    driver = db.relationship('Driver', back_populates='user_ratings')
 
     def __repr__(self) -> str:
-        return f"UserRatings({self.user_ratings_id}, {self.rating}, {self.orders_orders_id})"
+        return (f"UserRatings({self.user_ratings_id}, {self.rating}, {self.orders_orders_id}, "
+                f"{self.user_id}, {self.driver_id})")
 
     def put_into_dto(self) -> Dict[str, Any]:
         """
@@ -26,7 +32,9 @@ class UserRatings(db.Model, IDto):
         return {
             "user_ratings_id": self.user_ratings_id,
             "rating": self.rating,
-            "orders_orders_id": self.orders_orders_id
+            "orders_orders_id": self.orders_orders_id,
+            "user_id": self.user_id,
+            "driver_id": self.driver_id
         }
 
     @staticmethod
@@ -38,6 +46,8 @@ class UserRatings(db.Model, IDto):
         """
         obj = UserRatings(
             rating=dto_dict.get("rating"),
-            orders_orders_id=dto_dict.get("orders_orders_id")
+            orders_orders_id=dto_dict.get("orders_orders_id"),
+            user_id=dto_dict.get("user_id"),
+            driver_id=dto_dict.get("driver_id")
         )
         return obj

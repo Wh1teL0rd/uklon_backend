@@ -18,6 +18,11 @@ class Driver(db.Model, IDto):
     car_id = db.Column(db.Integer, db.ForeignKey('cars.carID'))
     car = db.relationship('Car', back_populates='drivers')
 
+    # Relationship 1:M with DriverRatings
+    driver_ratings = db.relationship('DriverRatings', back_populates='driver', cascade='all, delete-orphan')
+    # Relationship 1:M with UserRatings
+    user_ratings = db.relationship('UserRatings', back_populates='driver', cascade='all, delete-orphan')
+
     def __repr__(self) -> str:
         return (f"Driver({self.driverID}, '{self.first_name}', '{self.last_name}',"
                 f" '{self.contact_number}', {self.car_id})")
