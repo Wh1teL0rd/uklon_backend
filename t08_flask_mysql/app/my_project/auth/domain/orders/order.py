@@ -19,6 +19,8 @@ class Order(db.Model, IDto):
     start_point = db.Column(db.String(45))
     end_point = db.Column(db.String(45))
 
+    extra_order_details = db.relationship('ExtraOrderDetails', back_populates='order', uselist=False)
+
     def __repr__(self) -> str:
         return (f"Order({self.ordersID}, {self.user_id}, {self.drivers_id}, {self.car_id}, '{self.date}', "
                 f"'{self.start_point}', '{self.end_point}')")

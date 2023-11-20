@@ -13,14 +13,13 @@ class ExtraOrderDetails(db.Model, IDto):
 
     idExtraOrderDetails = db.Column(db.Integer, primary_key=True, autoincrement=True)
     details = db.Column(db.String(255))
-    Orders_ordersID = db.Column(db.Integer, db.ForeignKey('orders.ordersID'), unique=True, nullable=False)
+    ordersID = db.Column(db.Integer, db.ForeignKey('orders.ordersID'), unique=True, nullable=False)
 
-    # Define the relationship to the Orders table
-    order = db.relationship('Orders', back_populates='extra_order_details')
+    order = db.relationship('Order', back_populates='extra_order_details')
 
     def __repr__(self) -> str:
         return (f"ExtraOrderDetails({self.idExtraOrderDetails}, '{self.details}', "
-                f"{self.Orders_ordersID})")
+                f"{self.ordersID})")
 
     def put_into_dto(self) -> Dict[str, Any]:
         """
@@ -30,7 +29,7 @@ class ExtraOrderDetails(db.Model, IDto):
         return {
             "idExtraOrderDetails": self.idExtraOrderDetails,
             "details": self.details,
-            "Orders_ordersID": self.Orders_ordersID
+            "ordersID": self.ordersID
         }
 
     @staticmethod
@@ -42,6 +41,6 @@ class ExtraOrderDetails(db.Model, IDto):
         """
         obj = ExtraOrderDetails(
             details=dto_dict.get("details"),
-            Orders_ordersID=dto_dict.get("Orders_ordersID")
+            ordersID=dto_dict.get("ordersID")
         )
         return obj
