@@ -17,6 +17,8 @@ class Car(db.Model, IDto):
     model = db.Column(db.String(45))
     year = db.Column(db.Integer)
 
+    drivers = db.relationship('Driver', back_populates='car')
+
     def __repr__(self) -> str:
         return (f"Car({self.carID}, '{self.car_type}', '{self.licence_plate}', "
                 f"'{self.model}', {self.year})")
