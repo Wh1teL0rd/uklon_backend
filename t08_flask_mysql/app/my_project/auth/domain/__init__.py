@@ -7,3 +7,4 @@ from t08_flask_mysql.app.my_project.auth.domain.orders.drivers import Driver
 from t08_flask_mysql.app.my_project.auth.domain.orders.order import Order
 from t08_flask_mysql.app.my_project.auth.domain.orders.user_ratings import UserRatings
 from t08_flask_mysql.app.my_project.auth.domain.orders.driver_ratings import DriverRatings
+from t08_flask_mysql.app.my_project.auth.domain.orders.additionaldetails import AdditionalDetails
