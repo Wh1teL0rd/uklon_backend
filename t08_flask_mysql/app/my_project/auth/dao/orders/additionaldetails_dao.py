@@ -1,4 +1,6 @@
 from typing import List, Optional
+from sqlalchemy import text
+
 
 from t08_flask_mysql.app.my_project.auth.dao.general_dao import GeneralDAO
 from t08_flask_mysql.app.my_project.auth.domain import AdditionalDetails
@@ -9,6 +11,22 @@ class AdditionalDetailsDAO(GeneralDAO):
     Realization of AdditionalDetails data access layer.
     """
     _domain_type = AdditionalDetails
+
+    def insert_additional_details_sp(self, detail_info: str, carID: int) -> bool:
+        """
+        Call stored procedure to insert new AdditionalDetails record.
+        :param detail_info: detail_info value
+        :param carID: carID value
+        :return: True if insertion was successful, False otherwise
+        """
+        try:
+            sql = text("CALL insert_additional_details_sp(:detail_info, :carID)")
+            self._session.execute(sql, {'detail_info': detail_info, 'carID': carID})
+            self._session.commit()
+            return True
+        except Exception as e:
+            print(f"Error inserting AdditionalDetails: {e}")
+            return False
 
     def find_by_detail_info(self, detail_info: str) -> List[object]:
         """
