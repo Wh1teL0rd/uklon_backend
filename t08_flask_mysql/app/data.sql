@@ -76,58 +76,6 @@ VALUES
     (4, 9),
     (5, 10);
 
-INSERT INTO UserRatings_has_Users (UserRatings_UserRatingsID, Users_userID)
-VALUES
-    (1, 1),
-    (2, 2),
-    (3, 3),
-    (4, 4),
-    (5, 5),
-    (6, 6),
-    (7, 7),
-    (8, 8),
-    (9, 9),
-    (10, 10);
-
-INSERT INTO UserRatings_has_Drivers (UserRatings_UserRatingsID, Drivers_driverID)
-VALUES
-    (1, 1),
-    (2, 2),
-    (3, 3),
-    (4, 4),
-    (5, 5),
-    (6, 6),
-    (7, 7),
-    (8, 8),
-    (9, 9),
-    (10, 10);
-
-INSERT INTO DriverRatings_has_Users (DriverRatings_ratingsID, Users_userID)
-VALUES
-    (1, 1),
-    (2, 2),
-    (3, 3),
-    (4, 4),
-    (5, 5),
-    (6, 6),
-    (7, 7),
-    (8, 8),
-    (9, 9),
-    (10, 10);
-
-INSERT INTO DriverRatings_has_Drivers (DriverRatings_ratingsID, Drivers_driverID)
-VALUES
-    (1, 1),
-    (2, 2),
-    (3, 3),
-    (4, 4),
-    (5, 5),
-    (6, 6),
-    (7, 7),
-    (8, 8),
-    (9, 9),
-    (10, 10);
-
 INSERT INTO ExtraOrderDetails (details, Orders_ordersID)
 VALUES
     ('Additional luggage required', 1),
